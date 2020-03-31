@@ -1,0 +1,61 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EmployeesInfoService WSDL service -->
+
+  <service name="EmployeesInfo" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://services.imcs.com"/>
+      <parameter name="wsdlServiceElement" value="EmployeesInfoService"/>
+      <parameter name="schemaQualified" value="http://dto.imcs.com,http://exception.imcs.com,http://services.imcs.com"/>
+      <parameter name="wsdlServicePort" value="EmployeesInfo"/>
+      <parameter name="className" value="com.imcs.services.EmployeesInfoSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="EmployeesInfo"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="addEmployeeInfo" qname="operNS:addEmployeeInfo" xmlns:operNS="http://services.imcs.com" returnQName="retNS:addEmployeeInfoReturn" xmlns:retNS="http://services.imcs.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:empID" xmlns:pns="http://services.imcs.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:empFirstName" xmlns:pns="http://services.imcs.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:empLastName" xmlns:pns="http://services.imcs.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:empEmail" xmlns:pns="http://services.imcs.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="removeEmployeeInfo" qname="operNS:removeEmployeeInfo" xmlns:operNS="http://services.imcs.com" returnQName="retNS:removeEmployeeInfoReturn" xmlns:retNS="http://services.imcs.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:pEmpId" xmlns:pns="http://services.imcs.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getEmployeeInfo" qname="operNS:getEmployeeInfo" xmlns:operNS="http://services.imcs.com" returnQName="retNS:getEmployeeInfoReturn" xmlns:retNS="http://services.imcs.com" returnType="rtns:EmployeeDTO" xmlns:rtns="http://dto.imcs.com" soapAction="" >
+        <parameter qname="pns:empId" xmlns:pns="http://services.imcs.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="ApplicationException" qname="fns:fault" xmlns:fns="http://services.imcs.com" class="com.imcs.exception.ApplicationException" type="tns:ApplicationException" xmlns:tns="http://exception.imcs.com"/>
+      </operation>
+      <operation name="updateEmployeeInfo" qname="operNS:updateEmployeeInfo" xmlns:operNS="http://services.imcs.com" returnQName="retNS:updateEmployeeInfoReturn" xmlns:retNS="http://services.imcs.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:pEmpId" xmlns:pns="http://services.imcs.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pFirstName" xmlns:pns="http://services.imcs.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pLastName" xmlns:pns="http://services.imcs.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pEmail" xmlns:pns="http://services.imcs.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="removeEmployeeInfo addEmployeeInfo getEmployeeInfo updateEmployeeInfo"/>
+
+      <typeMapping
+        xmlns:ns="http://dto.imcs.com"
+        qname="ns:EmployeeDTO"
+        type="java:com.imcs.dto.EmployeeDTO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://exception.imcs.com"
+        qname="ns:ApplicationException"
+        type="java:com.imcs.exception.ApplicationException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://services.imcs.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services.imcs.com" xmlns:intf="http://services.imcs.com" xmlns:tns1="http://dto.imcs.com" xmlns:tns2="http://exception.imcs.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://services.imcs.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.imcs.com"/>
+   <import namespace="http://dto.imcs.com"/>
+   <element name="addEmployeeInfo">
+    <complexType>
+     <sequence>
+      <element name="empID" type="xsd:int"/>
+      <element name="empFirstName" type="xsd:string"/>
+      <element name="empLastName" type="xsd:string"/>
+      <element name="empEmail" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addEmployeeInfoResponse">
+    <complexType>
+     <sequence>
+      <element name="addEmployeeInfoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeEmployeeInfo">
+    <complexType>
+     <sequence>
+      <element name="pEmpId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeEmployeeInfoResponse">
+    <complexType>
+     <sequence>
+      <element name="removeEmployeeInfoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getEmployeeInfo">
+    <complexType>
+     <sequence>
+      <element name="empId" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getEmployeeInfoResponse">
+    <complexType>
+     <sequence>
+      <element name="getEmployeeInfoReturn" type="tns1:EmployeeDTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns2:ApplicationException"/>
+   <element name="updateEmployeeInfo">
+    <complexType>
+     <sequence>
+      <element name="pEmpId" type="xsd:string"/>
+      <element name="pFirstName" type="xsd:string"/>
+      <element name="pLastName" type="xsd:string"/>
+      <element name="pEmail" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateEmployeeInfoResponse">
+    <complexType>
+     <sequence>
+      <element name="updateEmployeeInfoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.imcs.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.imcs.com"/>
+   <complexType name="EmployeeDTO">
+    <sequence>
+     <element name="emailId" nillable="true" type="xsd:string"/>
+     <element name="empId" nillable="true" type="xsd:string"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://exception.imcs.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.imcs.com"/>
+   <complexType name="ApplicationException">
+    <sequence/>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="addEmployeeInfoResponse">
+
+      <wsdl:part element="impl:addEmployeeInfoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEmployeeInfoRequest">
+
+      <wsdl:part element="impl:getEmployeeInfo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateEmployeeInfoResponse">
+
+      <wsdl:part element="impl:updateEmployeeInfoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeEmployeeInfoResponse">
+
+      <wsdl:part element="impl:removeEmployeeInfoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addEmployeeInfoRequest">
+
+      <wsdl:part element="impl:addEmployeeInfo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="removeEmployeeInfoRequest">
+
+      <wsdl:part element="impl:removeEmployeeInfo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateEmployeeInfoRequest">
+
+      <wsdl:part element="impl:updateEmployeeInfo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ApplicationException">
+
+      <wsdl:part element="impl:fault" name="fault">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEmployeeInfoResponse">
+
+      <wsdl:part element="impl:getEmployeeInfoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="EmployeesInfo">
+
+      <wsdl:operation name="addEmployeeInfo">
+
+         <wsdl:input message="impl:addEmployeeInfoRequest" name="addEmployeeInfoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addEmployeeInfoResponse" name="addEmployeeInfoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeEmployeeInfo">
+
+         <wsdl:input message="impl:removeEmployeeInfoRequest" name="removeEmployeeInfoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:removeEmployeeInfoResponse" name="removeEmployeeInfoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEmployeeInfo">
+
+         <wsdl:input message="impl:getEmployeeInfoRequest" name="getEmployeeInfoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getEmployeeInfoResponse" name="getEmployeeInfoResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:ApplicationException" name="ApplicationException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateEmployeeInfo">
+
+         <wsdl:input message="impl:updateEmployeeInfoRequest" name="updateEmployeeInfoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateEmployeeInfoResponse" name="updateEmployeeInfoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="EmployeesInfoSoapBinding" type="impl:EmployeesInfo">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addEmployeeInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addEmployeeInfoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addEmployeeInfoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="removeEmployeeInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="removeEmployeeInfoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="removeEmployeeInfoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEmployeeInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEmployeeInfoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEmployeeInfoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ApplicationException">
+
+            <wsdlsoap:fault name="ApplicationException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateEmployeeInfo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateEmployeeInfoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateEmployeeInfoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="EmployeesInfoService">
+
+      <wsdl:port binding="impl:EmployeesInfoSoapBinding" name="EmployeesInfo">
+
+         <wsdlsoap:address location="http://localhost:8081/BottomUpSoapServicesPrj/services/EmployeesInfo"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
